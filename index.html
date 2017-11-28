@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Meilleur espoir César 2018</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+
+  <style type="text/css">
+    main[v-cloak] {
+      display: none !important; /* Permet de ne rien afficher avant la fin du chargement */
+    }
+    main .card {
+      width: 45rem;
+    }
+  </style>
+ 
+</head>
+
+	<header class="clearfix">
+		<div class="card mb-3">
+		  <img class="card-img-top" src="./img/cesar.png" alt="Révélations Comédiennes César 2018">
+		  <div class="card-body">
+		    <h3 class="card-title">Le nom des 18 jeunes actrices susceptibles d’être nommées dans la catégorie du meilleur espoir féminin aux César a été révélé mi novembre.</h3>
+		    <h5 class="card-text">En attendant la sélection finale mi-janvier, testez vos connaissances sur cette catégorie très surveillée par le monde du cinéma français.</h5>
+		  </div>
+		</div>
+    </header>
+
+
+<body>
+
+    <div id="app" class="container">
+
+	    <main class="d-flex align-items-center justify-content-md-center" v-cloak>
+	      <div class="card">
+
+	        <div class="card-body" v-if="current < quiz.length">
+	          <img class="card-img-top" :src="step.image">
+	          <h4 class="card-title">{{ step.question }}</h4>
+
+	          <button v-if="step.choices" v-for="choice in step.choices" class="btn btn-lg btn-block" :class="buttonClasses(choice)" v-on:click="submitButton(choice)" :disabled="success === false">{{ choice }}</button>
+
+	          <p class="lead mt-2" v-if="success === true">Bien vu !</p>
+	          <div v-if="success !== null">
+	            {{ step.explainer[step.userAnswer] || step.explainer  }}
+	          <br>
+	          </div>
+
+	          <p class="lead mt-2" v-if="success === false">Raté ! <span v-if="!step.choices">La réponse était {{ step.answer }}</span></p>
+	          <button class="btn btn-dark btn-lg btn-block" v-if="success !== null" v-on:click="nextQuestion">Prochaine question</button>
+	        </div>
+
+	        <div class="card-body" v-if="current === quiz.length">
+	          <h4 class="card-title">Vous avez terminé !</h4>
+	          <p class="card-text">Votre score est {{ score }}/{{ quiz.length}}</p>
+	        </div>
+	      </div>
+	    </main>
+
+    </div>
+
+
+	<div class="container">
+
+		<div class="timeline-item" date-is='Novembre 2017'>
+			<h4>Révélations</h4>
+			<p>
+				Annonce des noms des 36 “révélations” susceptibles d’être nommées pour recevoir le César du meilleur espoir féminin et du meilleur espoir masculin. 
+			</p>
+		</div>
+		
+		<div class="timeline-item" date-is='Janvier 2018'>
+			<h4>Nominations</h4>
+			<p>
+				Dîner de gala organisé avec toutes les révélations et leur parrain ou leur marraine (un acteur ou une actrice connue) et annonce des cinq finalistes pour chaque catégorie. 
+			</p>
+		</div>
+		
+		<div class="timeline-item" date-is='Mars 2018'>
+			<h4>Annonce des deux jeunes acteurs récompensés</h4>
+			<p>
+				Soirée des César. Traditionnellement, les catégories "meilleur espoir" ouvrent la cérémonie. 
+			</p>
+		</div>
+
+	</div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="./quiz.js"></script> <!-- Ce script contient toutes les questions du quiz -->
+  <script src="./app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  
+</body>
+</html>
+
