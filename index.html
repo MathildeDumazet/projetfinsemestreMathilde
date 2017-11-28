@@ -38,7 +38,7 @@
 	      <div class="card">
 
 	        <div class="card-body" v-if="current < quiz.length">
-	          <img class="card-img-top" :src="step.image">
+	          <img class="card-img-top img-fluid" width="75%" :src="step.image">
 	          <h4 class="card-title">{{ step.question }}</h4>
 
 	          <button v-if="step.choices" v-for="choice in step.choices" class="btn btn-lg btn-block" :class="buttonClasses(choice)" v-on:click="submitButton(choice)" :disabled="success === false">{{ choice }}</button>
